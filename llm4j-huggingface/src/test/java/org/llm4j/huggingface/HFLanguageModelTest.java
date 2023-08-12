@@ -17,7 +17,6 @@ public class HFLanguageModelTest {
     public void should_send_messages_and_receive_response() throws ConfigurationException {
 
         Configuration config = new Configurations().properties("llm4j.properties");
-        Configuration envConfig = new EnvironmentConfiguration();
 
         LanguageModel llm = new HFLanguageModel.Builder()
                 .getLanguageModel(config);

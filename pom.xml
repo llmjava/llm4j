@@ -15,6 +15,7 @@
   <modules>
     <module>parent-pom.xml</module>
     <module>llm4j-api</module>
+    <module>llm4j-examples</module>
     <module>llm4j-huggingface</module>
   </modules>
 
