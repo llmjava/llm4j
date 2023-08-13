@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.llm4j</groupId>
+    <artifactId>llm4j-parent</artifactId>
+    <version>0.0-SNAPSHOT</version>
+    <relativePath>../parent-pom.xml</relativePath>
+  </parent>
+
+  <artifactId>llm4j-palm</artifactId>
+
+  <packaging>jar</packaging>
+  <name>LLM4J PaLM</name>
+  <description>The LLM4J API implementation for PALM</description>
+
+  <url>http://github.com/dzlab</url>
+
+  <properties>
+    <module-name>org.llm4j.palm</module-name>
+    <llm4j.provider.implementation>org.llm4j.palm.PaLMServiceProvider</llm4j.provider.implementation>
+    <llm4j.provider.type>palm</llm4j.provider.type>
+    <palm.version>0.0.0-SNAPSHOT</palm.version>
+    <grpc-okhttp.version>1.56.1</grpc-okhttp.version>
+    <gapi.version>2.32.0</gapi.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.llm4j</groupId>
+      <artifactId>llm4j-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>gapic-google-cloud-ai-generativelanguage-v1beta2-java</artifactId>
+      <version>${palm.version}</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/gapic-google-cloud-ai-generativelanguage-v1beta2-java-0.0.0-SNAPSHOT.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>grpc-google-cloud-ai-generativelanguage-v1beta2-java</artifactId>
+      <version>${palm.version}</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/grpc-google-cloud-ai-generativelanguage-v1beta2-java-0.0.0-SNAPSHOT.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>proto-google-cloud-ai-generativelanguage-v1beta2-java</artifactId>
+      <version>${palm.version}</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/proto-google-cloud-ai-generativelanguage-v1beta2-java-0.0.0-SNAPSHOT.jar</systemPath>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.api</groupId>
+      <artifactId>gax</artifactId>
+      <version>${gapi.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.api</groupId>
+      <artifactId>gax-grpc</artifactId>
+      <version>${gapi.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-okhttp</artifactId>
+      <version>${grpc-okhttp.version}</version>
+    </dependency>
+  </dependencies>
+
+
+</project>

@@ -20,26 +20,7 @@ class HFApiClient {
     private final String modelId;
 
     HFApiClient(Builder builder) {
-
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(new HFApiAuthorizationInterceptor(builder.apiKey))
-                .callTimeout(builder.timeout)
-                .connectTimeout(builder.timeout)
-                .readTimeout(builder.timeout)
-                .writeTimeout(builder.timeout)
-                .build();
-
-        Gson gson = new GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api-inference.huggingface.co")
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        this.api = retrofit.create(HFApi.class);
+        this.api = builder.api;
         this.modelId = builder.modelId;
     }
 
@@ -97,16 +78,39 @@ class HFApiClient {
     }
 
     public static class Builder {
-        private String apiKey;
+        private HFApi api;
         private String modelId;
-        private Duration timeout;
 
         public Builder withConfig(Configuration config) {
-            this.apiKey = config.getString("hf.apiKey");
             this.modelId = config.getString("modelId");
-            this.timeout = Duration.ofMillis(config.getLong("timeout", 15 * 1000L));
+            String apiKey = config.getString("hf.apiKey");
+            Duration timeout = Duration.ofMillis(config.getLong("timeout", 15 * 1000L));
+            this.api = buildApi(apiKey, timeout);
             return this;
         }
+
+        HFApi buildApi(String apiKey, Duration timeout) {
+            OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                    .addInterceptor(new HFApiAuthorizationInterceptor(apiKey))
+                    .callTimeout(timeout)
+                    .connectTimeout(timeout)
+                    .readTimeout(timeout)
+                    .writeTimeout(timeout)
+                    .build();
+
+            Gson gson = new GsonBuilder()
+                    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                    .create();
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("https://api-inference.huggingface.co")
+                    .client(okHttpClient)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build();
+
+            return retrofit.create(HFApi.class);
+        }
+
         public HFApiClient build() {
             return new HFApiClient(this);
         }

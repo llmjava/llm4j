@@ -7,7 +7,7 @@
   <groupId>org.llm4j</groupId>
   <artifactId>llm4j-bom</artifactId>
   <packaging>pom</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.0-SNAPSHOT</version>
 
   <name>LLM4J BOM</name>
   <description>LLM4J project BOM</description>
@@ -17,6 +17,7 @@
     <module>llm4j-api</module>
     <module>llm4j-examples</module>
     <module>llm4j-huggingface</module>
+    <module>llm4j-palm</module>
   </modules>
 
 
@@ -31,6 +32,12 @@
     <dependency>
       <groupId>org.llm4j</groupId>
       <artifactId>llm4j-huggingface</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.llm4j</groupId>
+      <artifactId>llm4j-palm</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>
