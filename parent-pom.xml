@@ -7,13 +7,13 @@
   <parent>
     <groupId>org.llm4j</groupId>
     <artifactId>llm4j-bom</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0-SNAPSHOT</version>
     <relativePath>pom.xml</relativePath>
   </parent>
 
   <artifactId>llm4j-parent</artifactId>
   <packaging>pom</packaging>
-  <name>LLM4J Parent OM</name>
+  <name>LLM4J Parent</name>
   <description>Top LLM4J project parent pom.xml file</description>
   <url>http://maven.apache.org</url>
 
