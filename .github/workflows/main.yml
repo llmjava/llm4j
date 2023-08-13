@@ -40,7 +40,9 @@ jobs:
         distribution: 'temurin'      
         java-version: ${{ matrix.jdk }}
     - name: Install
-      # download dependencies, etc, so test log looks better
+      env:
+        HF_API_KEY:   ${{ secrets.HF_API_KEY }}
+        PALM_API_KEY: ${{ secrets.PALM_API_KEY }}
       run: mvn clean install
 
 
