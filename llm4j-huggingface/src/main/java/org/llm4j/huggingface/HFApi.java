@@ -1,5 +1,8 @@
 package org.llm4j.huggingface;
 
+import org.llm4j.huggingface.request.TextEmbeddingRequest;
+import org.llm4j.huggingface.request.TextGenerationRequest;
+import org.llm4j.huggingface.request.TextGenerationResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;

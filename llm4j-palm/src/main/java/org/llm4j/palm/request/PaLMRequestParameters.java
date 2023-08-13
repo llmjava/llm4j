@@ -1,4 +1,4 @@
-package org.llm4j.palm;
+package org.llm4j.palm.request;
 
 import org.apache.commons.configuration2.Configuration;
 

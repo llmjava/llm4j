@@ -1,8 +1,11 @@
 package org.llm4j.huggingface;
 
 import org.apache.commons.configuration2.Configuration;
+import org.llm4j.api.ChatHistory;
 import org.llm4j.api.LanguageModel;
 import org.llm4j.api.LanguageModelFactory;
+import org.llm4j.huggingface.request.TextGenerationRequest;
+import org.llm4j.huggingface.request.TextGenerationResponse;
 
 public class HFLanguageModel implements LanguageModel {
 
@@ -22,6 +25,11 @@ public class HFLanguageModel implements LanguageModel {
         TextGenerationResponse response = client.generate(request);
 
         return response.getGeneratedText();
+    }
+
+    @Override
+    public String process(ChatHistory history) {
+        return null;
     }
 
     public static final class Builder implements LanguageModelFactory {
