@@ -80,37 +80,23 @@ class HFApiClient {
     }
 
     public static class Builder {
-        private HFApi api;
-        private String modelId;
 
-        public Builder withConfig(Configuration config) {
-            this.modelId = config.getString("modelId");
-            String apiKey = config.getString("hf.apiKey");
-            Duration timeout = Duration.ofMillis(config.getLong("timeout", 15 * 1000L));
-            this.api = buildApi(apiKey, timeout);
+        HFApi api;
+        String modelId;
+
+        public Builder withApi(HFApi api) {
+            this.api = api;
             return this;
         }
 
-        HFApi buildApi(String apiKey, Duration timeout) {
-            OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                    .addInterceptor(new HFApiAuthorizationInterceptor(apiKey))
-                    .callTimeout(timeout)
-                    .connectTimeout(timeout)
-                    .readTimeout(timeout)
-                    .writeTimeout(timeout)
-                    .build();
+        public Builder withEmbedModel(Configuration config) {
+            this.modelId = config.getString(HFConfig.MODEL_ID, HFConfig.DEFAULT_EMBEDDING_MODEL);
+            return this;
+        }
 
-            Gson gson = new GsonBuilder()
-                    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-                    .create();
-
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("https://api-inference.huggingface.co")
-                    .client(okHttpClient)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .build();
-
-            return retrofit.create(HFApi.class);
+        public Builder withTextModel(Configuration config) {
+            this.modelId = config.getString(HFConfig.MODEL_ID, HFConfig.DEFAULT_TEXT_MODEL);
+            return this;
         }
 
         public HFApiClient build() {

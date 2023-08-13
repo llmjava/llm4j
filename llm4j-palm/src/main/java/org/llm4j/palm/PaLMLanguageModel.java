@@ -5,9 +5,11 @@ import org.apache.commons.configuration2.Configuration;
 import org.llm4j.api.ChatHistory;
 import org.llm4j.api.LanguageModel;
 import org.llm4j.api.LanguageModelFactory;
+import org.llm4j.palm.request.EmbedRequestFactory;
 import org.llm4j.palm.request.MessageRequestFactory;
 import org.llm4j.palm.request.TextRequestFactory;
 
+import java.util.List;
 import java.util.Map;
 
 public class PaLMLanguageModel implements LanguageModel {
@@ -49,6 +51,16 @@ public class PaLMLanguageModel implements LanguageModel {
         Message response = client.chat(request);
 
         return response.toString();
+    }
+
+    @Override
+    public List<Float> embed(String text) {
+        EmbedTextRequest request = new EmbedRequestFactory()
+                .withConfig(config)
+                .withText(text)
+                .build();
+        List<Float> embeddings = client.embed(request);
+        return embeddings;
     }
 
     public static final class Builder implements LanguageModelFactory {

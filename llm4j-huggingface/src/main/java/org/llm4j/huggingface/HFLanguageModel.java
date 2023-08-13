@@ -4,20 +4,23 @@ import org.apache.commons.configuration2.Configuration;
 import org.llm4j.api.ChatHistory;
 import org.llm4j.api.LanguageModel;
 import org.llm4j.api.LanguageModelFactory;
+import org.llm4j.huggingface.request.TextEmbeddingRequest;
 import org.llm4j.huggingface.request.TextGenerationRequest;
 import org.llm4j.huggingface.request.TextGenerationResponse;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class HFLanguageModel implements LanguageModel {
 
     private Configuration config;
-    private HFApiClient client;
+    private HFApi api;
     public HFLanguageModel(Builder builder) {
         this.config = builder.config;
-        this.client = builder.client;
+        this.api = builder.api;
     }
 
     public String process(String text) {
@@ -25,7 +28,10 @@ public class HFLanguageModel implements LanguageModel {
                 .withInputs(text)
                 .withConfig(config)
                 .build();
-
+        HFApiClient client = new HFApiClient.Builder()
+                .withApi(api)
+                .withTextModel(config)
+                .build();
         TextGenerationResponse response = client.generate(request);
 
         return response.getGeneratedText();
@@ -51,13 +57,33 @@ public class HFLanguageModel implements LanguageModel {
         return process(text);
     }
 
+    @Override
+    public List<Float> embed(String text) {
+        List<String> segments = new ArrayList<>();
+        segments.add(text);
+        TextEmbeddingRequest request = new TextEmbeddingRequest.Builder()
+                .withInputs(segments)
+                .withConfig(config)
+                .build();
+        HFApiClient client = new HFApiClient.Builder()
+                .withApi(api)
+                .withEmbedModel(config)
+                .build();
+        float[] arr = client.embed(request).get(0);
+        List<Float> embeddings = new ArrayList<>();
+        for(float f: arr) {
+            embeddings.add(f);
+        }
+        return embeddings;
+    }
+
     public static final class Builder implements LanguageModelFactory {
         private Configuration config;
-        private HFApiClient client;
+        private HFApi api;
 
         public LanguageModel getLanguageModel(Configuration config) {
             this.config = config;
-            this.client = new HFApiClient.Builder().withConfig(config).build();
+            this.api = new HFApiFactory().build(config);
             return new HFLanguageModel(this);
         }
     }
