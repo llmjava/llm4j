@@ -1,6 +1,7 @@
 package org.llm4j.huggingface.request;
 
 import org.apache.commons.configuration2.Configuration;
+import org.llm4j.huggingface.HFConfig;
 
 public class HFRequestOptions {
     private final Boolean waitForModel;
@@ -17,8 +18,8 @@ public class HFRequestOptions {
         private Boolean useCache;
 
         public Builder withConfig(Configuration configs) {
-            this.waitForModel = configs.getBoolean("hf.waitForModel", true);
-            this.useCache = configs.getBoolean("hf.useCache", false);
+            this.waitForModel = configs.getBoolean(HFConfig.WIAT_FOR_MODEL, true);
+            this.useCache = configs.getBoolean(HFConfig.USE_CAHE, false);
             return this;
         }
 

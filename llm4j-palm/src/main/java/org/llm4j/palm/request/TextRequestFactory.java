@@ -3,6 +3,7 @@ package org.llm4j.palm.request;
 import com.google.ai.generativelanguage.v1beta2.GenerateTextRequest;
 import com.google.ai.generativelanguage.v1beta2.TextPrompt;
 import org.apache.commons.configuration2.Configuration;
+import org.llm4j.palm.PaLMConfig;
 
 public class TextRequestFactory {
     static String TEXT_MODEL_ID = "models/text-bison-001";
@@ -22,7 +23,7 @@ public class TextRequestFactory {
     }
 
     public TextRequestFactory withConfig(Configuration configs) {
-        this.modelId = configs.getString("modelId", TEXT_MODEL_ID);
+        this.modelId = configs.getString(PaLMConfig.MODEL_ID_KEY, TEXT_MODEL_ID);
         this.parameters = PaLMRequestParameters.builder()
                         .withConfig(configs)
                         .build();

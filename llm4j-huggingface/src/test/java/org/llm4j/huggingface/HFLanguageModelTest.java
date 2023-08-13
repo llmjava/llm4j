@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.llm4j.api.ChatHistory;
 import org.llm4j.api.LanguageModel;
 
+import java.util.List;
+
+import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 
 public class HFLanguageModelTest {
@@ -47,5 +50,19 @@ public class HFLanguageModelTest {
 
         assertWithMessage("Answer should contain right answer").
                 that(answer.toLowerCase()).contains("algeria");
+    }
+
+    @Test
+    @DisplayName("Should embed text")
+    public void should_process_text_embed_request() throws ConfigurationException {
+
+        Configuration config = new Configurations().properties("llm4j.properties");
+
+        LanguageModel llm = new HFLanguageModel.Builder()
+                .getLanguageModel(config);
+
+        List<Float> embeddings = llm.embed("In what country is El Outed located?");
+
+        assertThat(embeddings).isNotEmpty();
     }
 }

@@ -2,6 +2,7 @@ package org.llm4j.palm.request;
 
 import com.google.ai.generativelanguage.v1beta2.*;
 import org.apache.commons.configuration2.Configuration;
+import org.llm4j.palm.PaLMConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,7 @@ public class MessageRequestFactory {
     }
 
     public MessageRequestFactory withConfig(Configuration configs) {
-        this.modelId = configs.getString("modelId", CHAT_MODEL_ID);
+        this.modelId = configs.getString(PaLMConfig.MODEL_ID_KEY, CHAT_MODEL_ID);
         this.parameters = PaLMRequestParameters.builder()
                         .withConfig(configs)
                         .build();

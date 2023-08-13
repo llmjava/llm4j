@@ -9,6 +9,7 @@ import org.apache.commons.configuration2.Configuration;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 public class PaLMClient {
 
@@ -35,6 +36,12 @@ public class PaLMClient {
         return returnedText;
     }
 
+    public List<Float> embed(EmbedTextRequest request) {
+        EmbedTextResponse response = textClient.embedText(request);
+
+        Embedding embedding = response.getEmbedding();
+        return embedding.getValueList();
+    }
 
     static class Builder {
         TextServiceClient textClient;
