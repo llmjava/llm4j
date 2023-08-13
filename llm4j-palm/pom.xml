@@ -24,7 +24,7 @@
     <llm4j.provider.implementation>org.llm4j.palm.PaLMServiceProvider</llm4j.provider.implementation>
     <llm4j.provider.type>palm</llm4j.provider.type>
     <palm.version>0.0.0-SNAPSHOT</palm.version>
-    <grpc-okhttp.version>1.56.1</grpc-okhttp.version>
+    <grpc-okhttp.version>1.57.1</grpc-okhttp.version>
     <gapi.version>2.32.0</gapi.version>
   </properties>
 
