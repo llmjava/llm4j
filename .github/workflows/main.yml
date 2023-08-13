@@ -39,21 +39,10 @@ jobs:
       with:
         distribution: 'temurin'      
         java-version: ${{ matrix.jdk }}
-    - name: Check secrets presence
-      id: checksecrets
-      shell: bash
-      run: |
-        if [ "HF_API_KEY" == "" ]; then
-          echo "secretspresent=NO" >> $GITHUB_OUTPUT
-        else
-          echo "secretspresent=YES" >> $GITHUB_OUTPUT
-        fi
-      env:
-        HF_API_KEY: ${{ secrets.HF_API_KEY}}
     - name: Install
-      run: mvn clean install
       env:
-        HF_API_KEY:   ${{ secrets.PALM_API_KEY }}
+        HF_API_KEY:   ${{ secrets.HF_API_KEY }}
         PALM_API_KEY: ${{ secrets.PALM_API_KEY }}
+      run: mvn clean install
 
 
