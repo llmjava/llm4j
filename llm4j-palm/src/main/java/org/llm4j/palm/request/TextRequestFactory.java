@@ -1,13 +1,11 @@
-package org.llm4j.palm;
+package org.llm4j.palm.request;
 
 import com.google.ai.generativelanguage.v1beta2.GenerateTextRequest;
 import com.google.ai.generativelanguage.v1beta2.TextPrompt;
 import org.apache.commons.configuration2.Configuration;
 
-public class GenerateTextRequestFactory {
-
-    static String CHAT_MODEL_ID = "chat-bison-001";
-    static String TEXT_MODEL_ID = "text-bison-001";
+public class TextRequestFactory {
+    static String TEXT_MODEL_ID = "models/text-bison-001";
 
     /**
      * which model to use to generate the result
@@ -16,14 +14,14 @@ public class GenerateTextRequestFactory {
     private TextPrompt prompt;
     private PaLMRequestParameters parameters;
 
-    public GenerateTextRequestFactory withInputs(String inputs) {
+    public TextRequestFactory withInputs(String inputs) {
         this.prompt = TextPrompt.newBuilder()
                 .setText(inputs)
                 .build();
         return this;
     }
 
-    public GenerateTextRequestFactory withConfig(Configuration configs) {
+    public TextRequestFactory withConfig(Configuration configs) {
         this.modelId = configs.getString("modelId", TEXT_MODEL_ID);
         this.parameters = PaLMRequestParameters.builder()
                         .withConfig(configs)

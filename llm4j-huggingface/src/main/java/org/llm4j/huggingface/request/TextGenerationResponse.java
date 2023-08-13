@@ -1,4 +1,4 @@
-package org.llm4j.huggingface;
+package org.llm4j.huggingface.request;
 
 public class TextGenerationResponse {
 

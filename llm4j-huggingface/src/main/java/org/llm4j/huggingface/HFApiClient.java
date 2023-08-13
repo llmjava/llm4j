@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
 import org.apache.commons.configuration2.Configuration;
-import retrofit2.Response;
+import org.llm4j.huggingface.request.TextEmbeddingRequest;
+import org.llm4j.huggingface.request.TextGenerationRequest;
+import org.llm4j.huggingface.request.TextGenerationResponse;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
