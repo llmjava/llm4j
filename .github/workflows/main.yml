@@ -39,10 +39,11 @@ jobs:
       with:
         distribution: 'temurin'      
         java-version: ${{ matrix.jdk }}
-    - name: Install
+        cache: maven
+    - name: Build with Maven
       env:
         HF_API_KEY:   ${{ secrets.HF_API_KEY }}
         PALM_API_KEY: ${{ secrets.PALM_API_KEY }}
-      run: mvn clean install
+      run: mvn --batch-mode --update-snapshots package
 
 
