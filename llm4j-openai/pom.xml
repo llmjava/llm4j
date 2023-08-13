@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.llm4j</groupId>
+    <artifactId>llm4j-parent</artifactId>
+    <version>0.0-SNAPSHOT</version>
+    <relativePath>../parent-pom.xml</relativePath>
+  </parent>
+
+  <artifactId>llm4j-openai</artifactId>
+
+  <packaging>jar</packaging>
+  <name>LLM4J OpenAI</name>
+  <description>The LLM4J API implementation for OpenAI</description>
+
+  <url>http://github.com/dzlab</url>
+
+  <properties>
+    <module-name>org.llm4j.openai</module-name>
+    <llm4j.provider.implementation>org.llm4j.openai.OpenAIServiceProvider</llm4j.provider.implementation>
+    <llm4j.provider.type>openai</llm4j.provider.type>
+    <palm.version>0.0.0-SNAPSHOT</palm.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.llm4j</groupId>
+      <artifactId>llm4j-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>dev.ai4j</groupId>
+      <artifactId>openai4j</artifactId>
+      <version>0.6.0</version>
+    </dependency>
+  </dependencies>
+
+
+</project>
