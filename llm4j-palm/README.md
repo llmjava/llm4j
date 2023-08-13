@@ -1,0 +1,1 @@
+https://developers.generativeai.google/guide/palm_api_overview

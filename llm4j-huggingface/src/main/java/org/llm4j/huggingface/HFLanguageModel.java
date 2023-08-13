@@ -7,6 +7,10 @@ import org.llm4j.api.LanguageModelFactory;
 import org.llm4j.huggingface.request.TextGenerationRequest;
 import org.llm4j.huggingface.request.TextGenerationResponse;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class HFLanguageModel implements LanguageModel {
 
     private Configuration config;
@@ -19,7 +23,7 @@ public class HFLanguageModel implements LanguageModel {
     public String process(String text) {
         TextGenerationRequest request = new TextGenerationRequest.Builder()
                 .withInputs(text)
-                .withConfig(this.config)
+                .withConfig(config)
                 .build();
 
         TextGenerationResponse response = client.generate(request);
@@ -29,7 +33,22 @@ public class HFLanguageModel implements LanguageModel {
 
     @Override
     public String process(ChatHistory history) {
-        return null;
+        List<String> lines = new ArrayList<>();
+        // Add context
+        if(history.getContext()!=null) lines.add(history.getContext());
+        // Add examples
+        for(Map.Entry<ChatHistory.Message, ChatHistory.Message> pair: history.getExampleList()) {
+            lines.add(pair.getKey().toString());
+            lines.add(pair.getValue().toString());
+        }
+        // Add conversations
+        for(ChatHistory.Message message: history.getMessageList()) {
+            lines.add(message.toString());
+        }
+        // submit
+        String text = String.join("\n", lines);
+
+        return process(text);
     }
 
     public static final class Builder implements LanguageModelFactory {
