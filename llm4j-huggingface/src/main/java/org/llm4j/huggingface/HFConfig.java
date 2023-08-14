@@ -11,5 +11,6 @@ public class HFConfig {
     public static String WIAT_FOR_MODEL = "hf.waitForModel";
     public static String USE_CAHE = "hf.useCache";
     public static String TIMEOUT = "timeout";
+    public static final long DEFAULT_TIMEOUT_MILLIS = 15 * 1000L;
 
 }
