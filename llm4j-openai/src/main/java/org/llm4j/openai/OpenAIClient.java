@@ -1,16 +1,21 @@
 package org.llm4j.openai;
 
 import dev.ai4j.openai4j.OpenAiClient;
+import dev.ai4j.openai4j.SyncOrAsync;
+import dev.ai4j.openai4j.SyncOrAsyncOrStreaming;
 import dev.ai4j.openai4j.chat.ChatCompletionRequest;
 import dev.ai4j.openai4j.chat.ChatCompletionResponse;
 import dev.ai4j.openai4j.completion.CompletionRequest;
 import dev.ai4j.openai4j.completion.CompletionResponse;
-import org.llm4j.openai.request.GenerationCallback;
+import dev.ai4j.openai4j.embedding.EmbeddingRequest;
+import dev.ai4j.openai4j.embedding.EmbeddingResponse;
+import dev.ai4j.openai4j.moderation.ModerationRequest;
+import dev.ai4j.openai4j.moderation.ModerationResponse;
+import org.llm4j.openai.request.TaskCallback;
 import org.llm4j.openai.request.StreamingCallback;
 
 import java.net.Proxy;
 import java.time.Duration;
-import java.util.function.Consumer;
 
 public class OpenAIClient {
 
@@ -23,34 +28,51 @@ public class OpenAIClient {
         return client.completion(request).execute();
     }
 
-    public void generateAsync(CompletionRequest request, GenerationCallback<CompletionResponse> callback) {
-        client.completion(request)
-                .onResponse(completionResponse -> callback.onSuccess(completionResponse))
-	            .onError(throwable -> callback.onFailure(throwable))
-                .execute();
+    public void generateAsync(CompletionRequest request, TaskCallback<CompletionResponse> callback) {
+        execute(client.completion(request), callback);
     }
 
     public void generateStream(CompletionRequest request, StreamingCallback<CompletionResponse> callback) {
-        client.completion(request)
-                .onPartialResponse(response -> callback.onPart(response))
-                .onComplete(() -> callback.onComplete())
-	            .onError(throwable -> callback.onFailure(throwable))
-                .execute();
+        execute(client.completion(request), callback);
     }
 
     public ChatCompletionResponse generate(ChatCompletionRequest request) {
         return client.chatCompletion(request).execute();
     }
 
-    public void generateAsync(ChatCompletionRequest request, GenerationCallback<ChatCompletionResponse> callback) {
-        client.chatCompletion(request)
+    public void generateAsync(ChatCompletionRequest request, TaskCallback<ChatCompletionResponse> callback) {
+        execute(client.chatCompletion(request), callback);
+    }
+
+    public void generateStream(ChatCompletionRequest request, StreamingCallback<ChatCompletionResponse> callback) {
+        execute(client.chatCompletion(request), callback);
+    }
+
+    public EmbeddingResponse embed(EmbeddingRequest request) {
+        return client.embedding(request).execute();
+    }
+
+    public void embedAsync(EmbeddingRequest request, TaskCallback<EmbeddingResponse> callback) {
+        execute(client.embedding(request), callback);
+    }
+
+    public ModerationResponse moderate(ModerationRequest request) {
+        return client.moderation(request).execute();
+    }
+
+    public void moderateAsync(ModerationRequest request, TaskCallback<ModerationResponse> callback) {
+        execute(client.moderation(request), callback);
+    }
+
+    private <T> void execute(SyncOrAsync<T> task, TaskCallback<T> callback) {
+        task
                 .onResponse(completionResponse -> callback.onSuccess(completionResponse))
                 .onError(throwable -> callback.onFailure(throwable))
                 .execute();
     }
 
-    public void generateStream(ChatCompletionRequest request, StreamingCallback<ChatCompletionResponse> callback) {
-        client.chatCompletion(request)
+    private <T> void execute(SyncOrAsyncOrStreaming<T> task, StreamingCallback<T> callback) {
+        task
                 .onPartialResponse(response -> callback.onPart(response))
                 .onComplete(() -> callback.onComplete())
                 .onError(throwable -> callback.onFailure(throwable))

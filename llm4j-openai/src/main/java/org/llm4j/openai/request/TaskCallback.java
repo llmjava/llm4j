@@ -1,7 +1,7 @@
 package org.llm4j.openai.request;
 
-public interface GenerationCallback<S> {
+public interface TaskCallback<T> {
 
-    void onSuccess(S response);
+    void onSuccess(T response);
     void onFailure(Throwable throwable);
 }

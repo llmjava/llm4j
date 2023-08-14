@@ -7,7 +7,6 @@ public class TextRequestFactory extends RequestFactory<CompletionRequest> {
 
     private String text;
 
-
     public TextRequestFactory withText(String text) {
         this.text = text;
         return this;
