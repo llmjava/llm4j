@@ -3,10 +3,12 @@ package org.llm4j.openai;
 import dev.ai4j.openai4j.OpenAiClient;
 import dev.ai4j.openai4j.completion.CompletionRequest;
 import dev.ai4j.openai4j.completion.CompletionResponse;
-import org.apache.commons.configuration2.Configuration;
+import org.llm4j.openai.request.GenerationCallback;
+import org.llm4j.openai.request.StreamingCallback;
 
 import java.net.Proxy;
 import java.time.Duration;
+import java.util.function.Consumer;
 
 public class OpenAIClient {
 
@@ -17,6 +19,21 @@ public class OpenAIClient {
 
     public CompletionResponse generate(CompletionRequest request) {
         return client.completion(request).execute();
+    }
+
+    public void generateAsync(CompletionRequest request, GenerationCallback<CompletionResponse> callback) {
+        client.completion(request)
+                .onResponse(completionResponse -> callback.onSuccess(completionResponse))
+	            .onError(throwable -> callback.onFailure(throwable))
+                .execute();
+    }
+
+    public void generateStream(CompletionRequest request, StreamingCallback<CompletionResponse> callback) {
+        client.completion(request)
+                .onPartialResponse(response -> callback.onPart(response))
+                .onComplete(() -> callback.onComplete())
+	            .onError(throwable -> callback.onFailure(throwable))
+                .execute();
     }
 
     static class Builder {

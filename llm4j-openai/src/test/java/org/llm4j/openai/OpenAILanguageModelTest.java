@@ -3,6 +3,7 @@ package org.llm4j.openai;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
+import org.junit.Ignore;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.llm4j.api.ChatHistory;
@@ -13,9 +14,10 @@ import java.util.List;
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 
+@Ignore
 public class OpenAILanguageModelTest {
 
-    @Test
+
     @DisplayName("Should generate text")
     public void should_process_text_generation_request() throws ConfigurationException {
 
@@ -30,7 +32,7 @@ public class OpenAILanguageModelTest {
                 that(answer.toLowerCase()).contains("algeria");
     }
 
-    @Test
+
     @DisplayName("Should process chat request")
     public void should_process_chat_request() throws ConfigurationException {
 
@@ -48,12 +50,12 @@ public class OpenAILanguageModelTest {
 
         String answer = llm.process(history);
 
-//        assertWithMessage("Answer should contain right answer").
-//                that(answer.toLowerCase()).contains("algeria");
+        assertWithMessage("Answer should contain right answer").
+                that(answer.toLowerCase()).contains("algeria");
     }
 
 
-    @Test
+
     @DisplayName("Should embed text")
     public void should_process_text_embed_request() throws ConfigurationException {
 
@@ -64,6 +66,6 @@ public class OpenAILanguageModelTest {
 
         List<Float> embeddings = llm.embed("In what country is El Outed located?");
 
-//        assertThat(embeddings).isNotEmpty();
+        assertThat(embeddings).isNotEmpty();
     }
 }

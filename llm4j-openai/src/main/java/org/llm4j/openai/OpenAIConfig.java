@@ -15,14 +15,26 @@ public class OpenAIConfig {
 
     public static final String MODEL_ID = "openai.modelId";
 
-    public static final String DEFAULT_MODEL = GPT_3_5_TURBO.stringValue();
+    public static final String MODEL_ID_DEFAULT = GPT_3_5_TURBO.stringValue();
 
     public static final String API_URL = "openai.url";
     public static final String API_URL_DEFAULT = "https://api.openai.com/";
     public static final String API_KEY = "openai.apiKey";
 
     public static final String TEMPERATURE = "temperature";
+    public static final double TEMPERATURE_DEFAULT = 0.9;
 
+    public static final String TOP_P = "topP";
+    public static final double TOP_P_DEFAULT = 0.9;
+
+    public static final String MAX_TOKENS = "maxTokens";
+    public static final int MAX_TOKENS_DEFAULT = 128;
+
+    public static final String PRESENCE_PENALTY = "presencePenalty";
+    public static final double PRESENCE_PENALTY_DEFAULT = 0.9;
+
+    public static final String FREQUENCY_PENALTY = "frequencyPenalty";
+    public static final double FREQUENCY_PENALTY_DEFAULT = 0.9;
     public static final String TIMEOUT = "timeout";
 
     public static final long DEFAULT_TIMEOUT_MILLIS = 15 * 1000L;
@@ -42,11 +54,24 @@ public class OpenAIConfig {
     }
 
     public String getModelId() {
-        return config.getString(OpenAIConfig.MODEL_ID, OpenAIConfig.DEFAULT_MODEL);
+        return config.getString(OpenAIConfig.MODEL_ID, OpenAIConfig.MODEL_ID_DEFAULT);
     }
 
     public Double getTemperature() {
-        return config.getDouble(OpenAIConfig.TEMPERATURE, 0.9);
+        return config.getDouble(OpenAIConfig.TEMPERATURE, TEMPERATURE_DEFAULT);
+    }
+
+    public Double getTopP() {
+        return config.getDouble(OpenAIConfig.TOP_P, TOP_P_DEFAULT);
+    }
+    public Integer getMaxTokens() {
+        return config.getInteger(OpenAIConfig.MAX_TOKENS, MAX_TOKENS_DEFAULT);
+    }
+    public Double getPresencePenalty() {
+        return config.getDouble(OpenAIConfig.PRESENCE_PENALTY, PRESENCE_PENALTY_DEFAULT);
+    }
+    public Double getFrequencyPenalty() {
+        return config.getDouble(OpenAIConfig.FREQUENCY_PENALTY, FREQUENCY_PENALTY_DEFAULT);
     }
 
     public Duration getTimeout() {
@@ -58,7 +83,7 @@ public class OpenAIConfig {
     }
 
     public Proxy.Type getProxy() {
-        String proxyTypeName = config.getString(OpenAIConfig.PROXY_TYPE, "");
+        String proxyTypeName = config.getString(OpenAIConfig.PROXY_TYPE);
         Proxy.Type proxyType = Proxy.Type.valueOf(proxyTypeName);
         return proxyType;
     }
@@ -67,7 +92,7 @@ public class OpenAIConfig {
         return config.getString(OpenAIConfig.PROXY_IP);
     }
 
-    public int getProxyPort() {
+    public Integer getProxyPort() {
         return config.getInt(OpenAIConfig.PROXY_PORT);
     }
 }

@@ -10,6 +10,10 @@ public class CompletionRequestFactory {
     private String text;
     private String modelId;
     private Double temperature;
+    private Double topP;
+    private Integer maxTokens;
+    private Double presencePenalty;
+    private Double frequencyPenalty;
 
 
     public CompletionRequestFactory withText(String text) {
@@ -20,6 +24,10 @@ public class CompletionRequestFactory {
     public CompletionRequestFactory withConfig(OpenAIConfig config) {
         this.modelId = config.getModelId();
         this.temperature = config.getTemperature();
+        this.topP = config.getTopP();
+        this.maxTokens = config.getMaxTokens();
+        this.presencePenalty = config.getPresencePenalty();
+        this.frequencyPenalty = config.getFrequencyPenalty();
         return this;
     }
 
@@ -28,6 +36,10 @@ public class CompletionRequestFactory {
                 .model(modelId)
                 .prompt(text)
                 .temperature(temperature)
+                .topP(topP)
+                .maxTokens(maxTokens)
+                .presencePenalty(presencePenalty)
+                .frequencyPenalty(frequencyPenalty)
                 .build();
         return request;
     }
