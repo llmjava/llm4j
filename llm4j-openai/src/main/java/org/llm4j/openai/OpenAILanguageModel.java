@@ -1,20 +1,33 @@
 package org.llm4j.openai;
 
+import dev.ai4j.openai4j.completion.CompletionRequest;
+import dev.ai4j.openai4j.completion.CompletionResponse;
 import org.apache.commons.configuration2.Configuration;
 import org.llm4j.api.ChatHistory;
 import org.llm4j.api.LanguageModel;
 import org.llm4j.api.LanguageModelFactory;
+import org.llm4j.openai.request.CompletionRequestFactory;
 
 import java.util.List;
 
 public class OpenAILanguageModel implements LanguageModel {
 
+    private final OpenAIClient client;
+    private final OpenAIConfig config;
     OpenAILanguageModel(Builder builder) {
-
+        this.client = builder.client;
+        this.config = builder.config;
     }
     @Override
     public String process(String text) {
-        return null;
+        CompletionRequest request = new CompletionRequestFactory()
+                .withText(text)
+                .withConfig(config)
+                .build();
+
+        CompletionResponse response = client.generate(request);
+
+        return response.text();
     }
 
     @Override
@@ -28,10 +41,14 @@ public class OpenAILanguageModel implements LanguageModel {
     }
 
     public static final class Builder implements LanguageModelFactory {
-        private Configuration config;
+        private OpenAIClient client;
+        private OpenAIConfig config;
 
         public LanguageModel getLanguageModel(Configuration config) {
-            this.config = config;
+            this.config = new OpenAIConfig(config);
+            this.client = new OpenAIClient.Builder()
+                    .withConfig(this.config)
+                    .build();
             return new OpenAILanguageModel(this);
         }
     }

@@ -14,7 +14,7 @@ public class HFApiFactory {
 
     public HFApi build(Configuration config) {
         String apiKey = config.getString(HFConfig.API_KEY);
-        Duration timeout = Duration.ofMillis(config.getLong(HFConfig.TIMEOUT, 15 * 1000L));
+        Duration timeout = Duration.ofMillis(config.getLong(HFConfig.TIMEOUT, HFConfig.DEFAULT_TIMEOUT_MILLIS));
         HFApi api = buildApi(apiKey, timeout);
         return api;
     }

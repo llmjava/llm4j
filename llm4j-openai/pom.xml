@@ -35,7 +35,7 @@
     <dependency>
       <groupId>dev.ai4j</groupId>
       <artifactId>openai4j</artifactId>
-      <version>0.6.0</version>
+      <version>0.6.1</version>
     </dependency>
   </dependencies>
 
