@@ -5,7 +5,7 @@ import org.apache.commons.configuration2.Configuration;
 import java.net.Proxy;
 import java.time.Duration;
 
-import static dev.ai4j.openai4j.Model.TEXT_DAVINCI_003;
+import static dev.ai4j.openai4j.Model.GPT_3_5_TURBO;
 
 public class OpenAIConfig {
 
@@ -15,7 +15,7 @@ public class OpenAIConfig {
 
     public static final String MODEL_ID = "openai.modelId";
 
-    public static final String DEFAULT_MODEL = TEXT_DAVINCI_003.stringValue();
+    public static final String DEFAULT_MODEL = GPT_3_5_TURBO.stringValue();
 
     public static final String API_URL = "openai.url";
     public static final String API_URL_DEFAULT = "https://api.openai.com/";
