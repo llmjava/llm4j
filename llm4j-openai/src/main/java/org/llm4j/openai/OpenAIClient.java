@@ -1,6 +1,8 @@
 package org.llm4j.openai;
 
 import dev.ai4j.openai4j.OpenAiClient;
+import dev.ai4j.openai4j.chat.ChatCompletionRequest;
+import dev.ai4j.openai4j.chat.ChatCompletionResponse;
 import dev.ai4j.openai4j.completion.CompletionRequest;
 import dev.ai4j.openai4j.completion.CompletionResponse;
 import org.llm4j.openai.request.GenerationCallback;
@@ -33,6 +35,25 @@ public class OpenAIClient {
                 .onPartialResponse(response -> callback.onPart(response))
                 .onComplete(() -> callback.onComplete())
 	            .onError(throwable -> callback.onFailure(throwable))
+                .execute();
+    }
+
+    public ChatCompletionResponse generate(ChatCompletionRequest request) {
+        return client.chatCompletion(request).execute();
+    }
+
+    public void generateAsync(ChatCompletionRequest request, GenerationCallback<ChatCompletionResponse> callback) {
+        client.chatCompletion(request)
+                .onResponse(completionResponse -> callback.onSuccess(completionResponse))
+                .onError(throwable -> callback.onFailure(throwable))
+                .execute();
+    }
+
+    public void generateStream(ChatCompletionRequest request, StreamingCallback<ChatCompletionResponse> callback) {
+        client.chatCompletion(request)
+                .onPartialResponse(response -> callback.onPart(response))
+                .onComplete(() -> callback.onComplete())
+                .onError(throwable -> callback.onFailure(throwable))
                 .execute();
     }
 

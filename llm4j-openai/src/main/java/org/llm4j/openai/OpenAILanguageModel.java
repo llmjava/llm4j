@@ -1,14 +1,18 @@
 package org.llm4j.openai;
 
+import dev.ai4j.openai4j.chat.ChatCompletionRequest;
+import dev.ai4j.openai4j.chat.ChatCompletionResponse;
 import dev.ai4j.openai4j.completion.CompletionRequest;
 import dev.ai4j.openai4j.completion.CompletionResponse;
 import org.apache.commons.configuration2.Configuration;
 import org.llm4j.api.ChatHistory;
 import org.llm4j.api.LanguageModel;
 import org.llm4j.api.LanguageModelFactory;
-import org.llm4j.openai.request.CompletionRequestFactory;
+import org.llm4j.openai.request.ChatRequestFactory;
+import org.llm4j.openai.request.TextRequestFactory;
 
 import java.util.List;
+import java.util.Map;
 
 public class OpenAILanguageModel implements LanguageModel {
 
@@ -20,7 +24,7 @@ public class OpenAILanguageModel implements LanguageModel {
     }
     @Override
     public String process(String text) {
-        CompletionRequest request = new CompletionRequestFactory()
+        CompletionRequest request = new TextRequestFactory()
                 .withText(text)
                 .withConfig(config)
                 .build();
@@ -32,7 +36,13 @@ public class OpenAILanguageModel implements LanguageModel {
 
     @Override
     public String process(ChatHistory history) {
-        return null;
+        ChatCompletionRequest request = new ChatRequestFactory()
+                .withChat(history)
+                .withConfig(config)
+                .build();
+
+        ChatCompletionResponse response = client.generate(request);
+        return response.content();
     }
 
     @Override
