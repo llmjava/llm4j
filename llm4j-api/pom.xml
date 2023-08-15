@@ -21,6 +21,16 @@
 
   <properties>
     <module-name>org.llm4j</module-name>
+    <stingtemplate.version>4.3.4</stingtemplate.version>
   </properties>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>org.antlr</groupId>
+      <artifactId>ST4</artifactId>
+      <version>${stingtemplate.version}</version>
+    </dependency>
+  </dependencies>
 
 </project>
