@@ -45,5 +45,6 @@ jobs:
         HF_API_KEY:   ${{ secrets.HF_API_KEY }}
         PALM_API_KEY: ${{ secrets.PALM_API_KEY }}
       run: mvn --batch-mode --update-snapshots package
-
+    - name: Generate documentation
+      run: mvn javadoc:aggregate
 
