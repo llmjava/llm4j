@@ -26,7 +26,7 @@ public class OpenAILanguageModelTest {
         LanguageModel llm = new OpenAILanguageModel.Builder()
                 .getLanguageModel(config);
 
-        String answer = llm.process("In what country is El Outed located?");
+        String answer = llm.process("In what country is El Oued located?");
 
         assertWithMessage("Answer should contain right answer").
                 that(answer.toLowerCase()).contains("algeria");
@@ -64,7 +64,7 @@ public class OpenAILanguageModelTest {
         LanguageModel llm = new OpenAILanguageModel.Builder()
                 .getLanguageModel(config);
 
-        List<Float> embeddings = llm.embed("In what country is El Outed located?");
+        List<Float> embeddings = llm.embed("In what country is El Oued located?");
 
         assertThat(embeddings).isNotEmpty();
     }

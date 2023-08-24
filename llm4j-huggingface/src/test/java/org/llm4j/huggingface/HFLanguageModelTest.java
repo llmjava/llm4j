@@ -61,7 +61,7 @@ public class HFLanguageModelTest {
         LanguageModel llm = new HFLanguageModel.Builder()
                 .getLanguageModel(config);
 
-        List<Float> embeddings = llm.embed("In what country is El Outed located?");
+        List<Float> embeddings = llm.embed("In what country is El Oued located?");
 
         assertThat(embeddings).isNotEmpty();
     }
