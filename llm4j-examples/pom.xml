@@ -37,6 +37,10 @@
       <groupId>org.llm4j</groupId>
       <artifactId>llm4j-palm</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.llm4j</groupId>
+      <artifactId>llm4j-cohere</artifactId>
+    </dependency>
 
   </dependencies>
 
