@@ -1,4 +1,5 @@
 org.llm4j.api
+org.llm4j.cohere
 org.llm4j.examples
 org.llm4j.huggingface
 org.llm4j.huggingface.request
