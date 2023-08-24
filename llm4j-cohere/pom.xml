@@ -11,16 +11,19 @@
     <relativePath>../parent-pom.xml</relativePath>
   </parent>
 
-  <artifactId>llm4j-examples</artifactId>
+  <artifactId>llm4j-cohere</artifactId>
 
   <packaging>jar</packaging>
-  <name>LLM4J Examples</name>
-  <description>Examples showcasing how to LLM4J to query LLMs</description>
+  <name>LLM4J Cohere</name>
+  <description>The LLM4J API implementation for Cohere</description>
 
   <url>http://github.com/dzlab</url>
 
   <properties>
-    <module-name>org.llm4j.examples</module-name>
+    <module-name>org.llm4j.palm</module-name>
+    <llm4j.provider.implementation>org.llm4j.cohere.CohereServiceProvider</llm4j.provider.implementation>
+    <llm4j.provider.type>cohere</llm4j.provider.type>
+    <cohere.version>0.1</cohere.version>
   </properties>
 
   <dependencies>
@@ -30,19 +33,17 @@
     </dependency>
 
     <dependency>
-      <groupId>org.llm4j</groupId>
-      <artifactId>llm4j-huggingface</artifactId>
+      <groupId>com.github.llmjava</groupId>
+      <artifactId>cohere4j</artifactId>
+      <version>${cohere.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.llm4j</groupId>
-      <artifactId>llm4j-palm</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.llm4j</groupId>
-      <artifactId>llm4j-cohere</artifactId>
-    </dependency>
-
   </dependencies>
 
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
 
 </project>
