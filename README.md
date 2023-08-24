@@ -68,7 +68,7 @@ Example code to use against **Google PALM**:
 Create a configuration file
 ```properties
 # Set API key using env variable or put actual value
-cohere.apiKey=${env:PALM_API_KEY}
+palm.apiKey=${env:PALM_API_KEY}
 ```
 
 Create an instance of `LanguageModel` and submit text generation requests
