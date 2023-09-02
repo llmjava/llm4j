@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class PaLMLanguageModel implements LanguageModel {
 
-    private Configuration config;
+    private PaLMConfig config;
     private PaLMClient client;
 
     public PaLMLanguageModel(Builder builder) {
@@ -64,11 +64,11 @@ public class PaLMLanguageModel implements LanguageModel {
     }
 
     public static final class Builder implements LanguageModelFactory {
-        private Configuration config;
+        private PaLMConfig config;
         private PaLMClient client;
 
         public LanguageModel getLanguageModel(Configuration config) {
-            this.config = config;
+            this.config = new PaLMConfig(config);
             this.client = new PaLMClient.Builder().withConfig(config).build();
             return new PaLMLanguageModel(this);
         }
