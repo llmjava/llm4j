@@ -9,8 +9,6 @@ import java.util.List;
 
 public class MessageRequestFactory {
 
-    static String CHAT_MODEL_ID = "models/chat-bison-001";
-
     /**
      * which model to use to generate the result
      */
@@ -56,8 +54,8 @@ public class MessageRequestFactory {
         return this;
     }
 
-    public MessageRequestFactory withConfig(Configuration configs) {
-        this.modelId = configs.getString(PaLMConfig.MODEL_ID_KEY, CHAT_MODEL_ID);
+    public MessageRequestFactory withConfig(PaLMConfig configs) {
+        this.modelId = configs.getChatModelId();
         this.parameters = PaLMRequestParameters.builder()
                         .withConfig(configs)
                         .build();

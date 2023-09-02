@@ -5,7 +5,6 @@ import org.apache.commons.configuration2.Configuration;
 import org.llm4j.palm.PaLMConfig;
 
 public class EmbedRequestFactory {
-    static String EMBED_MODEL_ID = "models/embedding-gecko-001";
 
     /**
      * which model to use to generate the result
@@ -19,8 +18,8 @@ public class EmbedRequestFactory {
         return this;
     }
 
-    public EmbedRequestFactory withConfig(Configuration configs) {
-        this.modelId = configs.getString(PaLMConfig.MODEL_ID_KEY, EMBED_MODEL_ID);
+    public EmbedRequestFactory withConfig(PaLMConfig configs) {
+        this.modelId = configs.getEmbedModelId();
         return this;
     }
 

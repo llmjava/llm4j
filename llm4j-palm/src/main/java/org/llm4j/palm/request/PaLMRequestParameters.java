@@ -1,6 +1,7 @@
 package org.llm4j.palm.request;
 
 import org.apache.commons.configuration2.Configuration;
+import org.llm4j.palm.PaLMConfig;
 
 public class PaLMRequestParameters {
 
@@ -42,13 +43,13 @@ public class PaLMRequestParameters {
         private Integer maxOutputTokens;
         private Integer candidateCount;
 
-        public Builder withConfig(Configuration configs) {
-            this.topK = configs.getInteger("topK", 1);
-            this.topP = configs.getDouble("topP", 0.9);
-            this.temperature = configs.getDouble("temperature", 1.0);
-            this.maxNewTokens = configs.getInteger("maxNewTokens", 10);
-            this.maxOutputTokens = configs.getInteger("maxOutputTokens", 1000);
-            this.candidateCount = configs.getInteger("candidateCount", 1);
+        public Builder withConfig(PaLMConfig configs) {
+            this.topK = configs.getTopK();
+            this.topP = configs.getTopP();
+            this.temperature = configs.getTemperature();
+            this.maxNewTokens = configs.getMaxNewTokens();
+            this.maxOutputTokens = configs.getMaxOutputTokens();
+            this.candidateCount = configs.getCandidateCount();
             return this;
         }
         public PaLMRequestParameters build() {
