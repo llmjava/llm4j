@@ -7,7 +7,7 @@
   <groupId>org.llm4j</groupId>
   <artifactId>llm4j-bom</artifactId>
   <packaging>pom</packaging>
-  <version>0.1</version>
+  <version>0.2-SNAPSHOT</version>
 
   <name>LLM4J BOM</name>
   <description>LLM4J project BOM</description>
