@@ -11,7 +11,6 @@ public class EmbedRequestFactory {
      */
     private String modelId;
     private String text;
-    private PaLMRequestParameters parameters;
 
     public EmbedRequestFactory withText(String text) {
         this.text = text;

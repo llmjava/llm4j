@@ -34,7 +34,7 @@ public class TextRequestFactory {
                 .setPrompt(prompt)
                 .setTemperature(parameters.temperature.floatValue())
                 .setCandidateCount(parameters.candidateCount)
-                .setMaxOutputTokens(parameters.maxNewTokens)
+                .setMaxOutputTokens(parameters.maxOutputTokens)
                 .setTopK(parameters.topK)
                 .setTopP(parameters.topP.floatValue())
                 .build();
