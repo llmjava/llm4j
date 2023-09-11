@@ -25,7 +25,7 @@
     <llm4j.provider.type>palm</llm4j.provider.type>
     <palm.version>0.0.0-SNAPSHOT</palm.version>
     <grpc-okhttp.version>1.56.1</grpc-okhttp.version>
-    <gapi.version>2.32.0</gapi.version>
+    <gapi.version>2.33.0</gapi.version>
   </properties>
 
   <dependencies>
