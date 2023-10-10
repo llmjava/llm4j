@@ -24,14 +24,21 @@
     <llm4j.provider.implementation>org.llm4j.palm.PaLMServiceProvider</llm4j.provider.implementation>
     <llm4j.provider.type>palm</llm4j.provider.type>
     <palm.version>0.0.0-SNAPSHOT</palm.version>
-    <grpc-okhttp.version>1.56.1</grpc-okhttp.version>
-    <gapi.version>2.32.0</gapi.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>org.llm4j</groupId>
       <artifactId>llm4j-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-configuration2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
     </dependency>
 
     <dependency>
@@ -59,17 +66,14 @@
     <dependency>
       <groupId>com.google.api</groupId>
       <artifactId>gax</artifactId>
-      <version>${gapi.version}</version>
     </dependency>
     <dependency>
       <groupId>com.google.api</groupId>
       <artifactId>gax-grpc</artifactId>
-      <version>${gapi.version}</version>
     </dependency>
     <dependency>
       <groupId>io.grpc</groupId>
       <artifactId>grpc-okhttp</artifactId>
-      <version>${grpc-okhttp.version}</version>
     </dependency>
   </dependencies>
 

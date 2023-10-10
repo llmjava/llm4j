@@ -30,11 +30,17 @@
       <groupId>org.llm4j</groupId>
       <artifactId>llm4j-api</artifactId>
     </dependency>
-
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-configuration2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+    </dependency>
     <dependency>
       <groupId>dev.ai4j</groupId>
       <artifactId>openai4j</artifactId>
-      <version>0.6.1</version>
     </dependency>
   </dependencies>
 
