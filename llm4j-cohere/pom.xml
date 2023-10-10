@@ -23,7 +23,6 @@
     <module-name>org.llm4j.palm</module-name>
     <llm4j.provider.implementation>org.llm4j.cohere.CohereServiceProvider</llm4j.provider.implementation>
     <llm4j.provider.type>cohere</llm4j.provider.type>
-    <cohere.version>0.1</cohere.version>
   </properties>
 
   <dependencies>
@@ -31,11 +30,14 @@
       <groupId>org.llm4j</groupId>
       <artifactId>llm4j-api</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-configuration2</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>com.github.llmjava</groupId>
       <artifactId>cohere4j</artifactId>
-      <version>${cohere.version}</version>
     </dependency>
   </dependencies>
 

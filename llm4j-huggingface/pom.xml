@@ -23,7 +23,6 @@
     <module-name>org.llm4j.huggingface</module-name>
     <llm4j.provider.implementation>org.llm4j.huggingface.HFServiceProvider</llm4j.provider.implementation>
     <llm4j.provider.type>huggingface</llm4j.provider.type>
-    <retrofit2.version>2.9.0</retrofit2.version>
   </properties>
 
   <dependencies>
@@ -32,14 +31,20 @@
       <artifactId>llm4j-api</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-configuration2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.squareup.retrofit2</groupId>
       <artifactId>retrofit</artifactId>
-      <version>${retrofit2.version}</version>
     </dependency>
     <dependency>
       <groupId>com.squareup.retrofit2</groupId>
       <artifactId>converter-gson</artifactId>
-      <version>${retrofit2.version}</version>
     </dependency>
   </dependencies>
 

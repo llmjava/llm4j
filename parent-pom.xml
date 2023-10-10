@@ -36,25 +36,76 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <junit.version>5.10.0</junit.version>
+    <cohere.version>0.1</cohere.version>
     <commons.version>2.9.0</commons.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
+    <commons-text.version>1.10.0</commons-text.version>
+    <grpc-okhttp.version>1.56.1</grpc-okhttp.version>
+    <gapi.version>2.32.0</gapi.version>
+    <openai4j.version>0.6.1</openai4j.version>
+    <retrofit2.version>2.9.0</retrofit2.version>
     <truth.version>1.1.5</truth.version>
   </properties>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-configuration2</artifactId>
+        <version>${commons.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-beanutils</groupId>
+        <artifactId>commons-beanutils</artifactId>
+        <version>${commons-beanutils.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-text</artifactId>
+        <version>${commons-text.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.github.llmjava</groupId>
+        <artifactId>cohere4j</artifactId>
+        <version>${cohere.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.squareup.retrofit2</groupId>
+        <artifactId>retrofit</artifactId>
+        <version>${retrofit2.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.squareup.retrofit2</groupId>
+        <artifactId>converter-gson</artifactId>
+        <version>${retrofit2.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>dev.ai4j</groupId>
+        <artifactId>openai4j</artifactId>
+        <version>${openai4j.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.api</groupId>
+        <artifactId>gax</artifactId>
+        <version>${gapi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.api</groupId>
+        <artifactId>gax-grpc</artifactId>
+        <version>${gapi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.grpc</groupId>
+        <artifactId>grpc-okhttp</artifactId>
+        <version>${grpc-okhttp.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-configuration2</artifactId>
-      <version>${commons.version}</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
-    <dependency>
-      <groupId>commons-beanutils</groupId>
-      <artifactId>commons-beanutils</artifactId>
-      <version>${commons-beanutils.version}</version>
-    </dependency>
-
-
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
