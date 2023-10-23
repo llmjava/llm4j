@@ -40,7 +40,7 @@
     <commons.version>2.9.0</commons.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <commons-text.version>1.10.0</commons-text.version>
-    <grpc-okhttp.version>1.56.1</grpc-okhttp.version>
+    <grpc-okhttp.version>1.59.0</grpc-okhttp.version>
     <gapi.version>2.32.0</gapi.version>
     <openai4j.version>0.6.1</openai4j.version>
     <retrofit2.version>2.9.0</retrofit2.version>
