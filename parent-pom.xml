@@ -42,7 +42,7 @@
     <commons-text.version>1.10.0</commons-text.version>
     <grpc-okhttp.version>1.56.1</grpc-okhttp.version>
     <gapi.version>2.32.0</gapi.version>
-    <openai4j.version>0.6.1</openai4j.version>
+    <openai4j.version>0.11.1</openai4j.version>
     <retrofit2.version>2.9.0</retrofit2.version>
     <truth.version>1.1.5</truth.version>
   </properties>
