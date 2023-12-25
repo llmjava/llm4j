@@ -44,7 +44,7 @@
     <gapi.version>2.32.0</gapi.version>
     <openai4j.version>0.6.1</openai4j.version>
     <retrofit2.version>2.9.0</retrofit2.version>
-    <truth.version>1.1.5</truth.version>
+    <truth.version>1.2.0</truth.version>
   </properties>
 
   <dependencyManagement>
